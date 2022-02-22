@@ -21,4 +21,4 @@ juice_logo_path = "logo.png"
 juice_extra_menu = [
     { title = "GitHub", link = "https://github.com/rustybrain-dev"}
 ]
-repository_url = "https://github.com/rustybrain-dev"
+repository_url = "https://github.com/rustybrain-dev/rustybrain-dev.github.com"
