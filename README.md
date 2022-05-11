@@ -1,3 +1,3 @@
 # RustyBrain
 
-https://rustybrain.dev
+https://www.rustybrain.dev
