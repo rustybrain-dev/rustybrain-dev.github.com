@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>tree-sitter-markdown | RustyBrain - Build your second brain. </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#fed43f">
+    <meta name="apple-mobile-web-app-title" content="RustyBrain">
+    <meta name="application-name" content="RustyBrain">
+    <meta name="msapplication-TileColor" content="#fed43f">
+    <meta name="theme-color" content="#fed43f">
+
+    <style>
+    :root {
+        /* Primary theme color */
+        --primary-color: #FED43F;
+        /* Primary theme text color */
+        --primary-text-color: #543631;
+        /* Primary theme link color */
+        --primary-link-color: #F9BB2D;
+        /* Secondary color: the background body color */
+        --secondary-color: #fcfaf6;
+        --secondary-text-color: #303030;
+        /* Highlight text color of table of content */
+        --toc-highlight-text-color: #d46e13;
+    }
+</style>
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/normalize.css">
+    <link rel="stylesheet" href="https://rustybrain.dev/juice.css">
+    
+    
+</head>
+
+<body>
+    
+<header class="box-shadow">
+    
+
+<a href="https:&#x2F;&#x2F;rustybrain.dev&#x2F;">
+    <div class="logo">
+        <img src="https://rustybrain.dev/safari-pinned-tab.svg" alt="logo">
+        RustyBrain
+    </div>
+</a>
+
+<nav>
+    
+    <a class="nav-item subtitle-text" href="https:&#x2F;&#x2F;rustybrain.dev&#x2F;20220215&#x2F;">Hello, RustyBrain!</a>
+    
+    <a class="nav-item subtitle-text" href="https:&#x2F;&#x2F;rustybrain.dev&#x2F;20220221&#x2F;">tree-sitter-markdown</a>
+    
+    
+        
+        <a class="nav-item subtitle-text" href="https:&#x2F;&#x2F;github.com&#x2F;rustybrain-dev">GitHub</a>
+        
+    
+</nav>
+
+</header>
+
+
+    <main>
+        
+        
+        
+        
+        
+        <div class="toc">
+            <div class="toc-sticky">
+                
+                <div class="toc-item">
+                    <a class="subtext" href="https://rustybrain.dev/20220221/#tree-sitter-markdown">tree-sitter-markdown</a>
+                </div>
+                
+                
+                <div class="toc-item-child">
+                    <a class="subtext" href="https://rustybrain.dev/20220221/#install"><small>- Install</small></a>
+                </div>
+                
+                <div class="toc-item-child">
+                    <a class="subtext" href="https://rustybrain.dev/20220221/#usage"><small>- Usage</small></a>
+                </div>
+                
+                <div class="toc-item-child">
+                    <a class="subtext" href="https://rustybrain.dev/20220221/#license"><small>- License</small></a>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+        
+        
+
+        <div class="content text">
+            
+<div class="heading-text"></div>
+<h1 id="tree-sitter-markdown">tree-sitter-markdown</h1>
+<p>Markdown (<a href="https://github.github.com/gfm/">CommonMark Spec v0.29-gfm</a>) grammar
+for <a href="https://github.com/tree-sitter/tree-sitter">tree-sitter</a></p>
+<p><em>Note: This grammar is based on the assumption that
+<strong><a href="https://github.github.com/gfm/#matches">link label matchings</a> will never fail</strong>
+since reference links can come before their reference definitions,
+which causes it hard to do incrementally parsing without this assumption.</em></p>
+<p><a href="https://github.com/ikatyang/tree-sitter-markdown/blob/master/CHANGELOG.md">Changelog</a></p>
+<h2 id="install">Install</h2>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span> install tree-sitter-markdown tree-sitter
+</span></code></pre>
+<h2 id="usage">Usage</h2>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#b48ead;">const </span><span style="color:#bf616a;">Parser </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">tree-sitter</span><span>&quot;);
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">Markdown </span><span>= </span><span style="color:#96b5b4;">require</span><span>(&quot;</span><span style="color:#a3be8c;">tree-sitter-markdown</span><span>&quot;);
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">parser </span><span>= new Parser();
+</span><span style="color:#bf616a;">parser</span><span>.</span><span style="color:#8fa1b3;">setLanguage</span><span>(</span><span style="color:#bf616a;">Markdown</span><span>);
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">sourceCode </span><span>= `
+</span><span style="color:#a3be8c;"># foo
+</span><span style="color:#a3be8c;">-     bar
+</span><span style="color:#a3be8c;">  baz
+</span><span>`;
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">tree </span><span>= </span><span style="color:#bf616a;">parser</span><span>.</span><span style="color:#96b5b4;">parse</span><span>(</span><span style="color:#bf616a;">sourceCode</span><span>);
+</span><span style="color:#ebcb8b;">console</span><span>.</span><span style="color:#96b5b4;">log</span><span>(</span><span style="color:#bf616a;">tree</span><span>.</span><span style="color:#bf616a;">rootNode</span><span>.</span><span style="color:#96b5b4;">toString</span><span>());
+</span><span style="color:#65737e;">// (document
+</span><span style="color:#65737e;">//   (atx_heading
+</span><span style="color:#65737e;">//     (atx_heading_marker)
+</span><span style="color:#65737e;">//     (heading_content))
+</span><span style="color:#65737e;">//   (tight_list
+</span><span style="color:#65737e;">//     (list_item
+</span><span style="color:#65737e;">//       (list_marker)
+</span><span style="color:#65737e;">//       (indented_code_block)
+</span><span style="color:#65737e;">//       (paragraph))))
+</span></code></pre>
+<h2 id="license">License</h2>
+<p>MIT © <a href="https://github.com/ikatyang">Ika</a></p>
+
+
+        </div>
+
+        
+        
+    </main>
+
+    
+    <footer>
+        <small class="subtext">
+            <a href="https://github.com/rustybrain-dev">RustyBrain</a> © 2022
+        </small>
+    </footer>
+    
+</body>
+<script>
+    function highlightNav(heading) {
+        let pathname = location.pathname;
+        document.querySelectorAll(".toc a").forEach((item) => {
+            item.classList.remove("active");
+        });
+        document.querySelector(".toc a[href$='" + pathname + "#" + heading + "']").classList.add("active");
+    }
+
+    let currentHeading = "";
+    window.onscroll = function () {
+        let h = document.querySelectorAll("h1,h2,h3,h4,h5,h6");
+        let elementArr = [];
+
+        h.forEach(item => {
+            if (item.id !== "") {
+                elementArr[item.id] = item.getBoundingClientRect().top;
+            }
+        });
+        elementArr.sort();
+        for (let key in elementArr) {
+            if (!elementArr.hasOwnProperty(key)) {
+                continue;
+            }
+            if (elementArr[key] > 0 && elementArr[key] < 300) {
+                if (currentHeading !== key) {
+                    highlightNav(key);
+                    currentHeading = key;
+                }
+                break;
+            }
+        }
+    }
+</script>
+
+</html>
